@@ -1,0 +1,39 @@
+body {
+    background-color: rgb(15, 15, 15);
+
+}
+
+.Myteam {
+    color: rgb(238, 238, 238);
+    font-size: 60px;
+    margin: 0 auto;
+}
+.maincard {
+
+    background-color: rgb(97, 196, 191);
+    padding: 15px;
+    
+}
+.mainouter{
+    justify-content:center;
+}
+.outer{
+    margin:1%
+
+}
+
+.header {
+    color: rgb(10, 77, 77);
+    font-size: 30px;
+}
+
+.subtitle {
+    color: rgb(10, 77, 77);
+    font-size: 20px;
+
+}
+.list-group-item{
+
+    font-size:11px;
+    
+}
