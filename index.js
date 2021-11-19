@@ -140,7 +140,7 @@ const addteamIntern = () => {
 
 
 
-const writeindex = (answers) => {
+const writeindex = () => {
 
   console.log(myteam)
   fs.writeFile('./dist/index.html', htmlgenerator(myteam), err => {
