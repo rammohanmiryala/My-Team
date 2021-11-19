@@ -131,6 +131,7 @@ const addteamIntern = () => {
       ])
     .then((answers) => {
       const intern = new Intern(answers.name, answers.id, answers.email,answers.school);
+      console.log(intern);
       myteam.push(intern);
       addteamemployee();
     })
