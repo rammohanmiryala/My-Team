@@ -8,7 +8,7 @@ const htmlgenerator = require('../My-Team/src/htmlgenerator');
 
 
 const myteam = [];
-console.log(myteam)
+
 
 // TODO: Create an array of questions for user input
 const addteammanger = () => {
@@ -39,6 +39,7 @@ const addteammanger = () => {
       ])
     .then((answers) => {
       const manager = new Manager(answers.name, answers.id, answers.email, answers.number, answers.role);
+      console.log(manager);
       myteam.push(manager);
       addteamemployee()
 
@@ -46,23 +47,23 @@ const addteammanger = () => {
 
 }
 const addteamemployee = () => {
-  return inquirer.prompt(
-      {
-        type: "list",
-        message: "What is your role?",
-        name: "role",
-        choices: ["Engineer", "Intern","No employee"]
-      })
+  return inquirer.prompt({
+      type: "list",
+      message: "What is your role?",
+      name: "role",
+      choices: ["Engineer", "Intern", "No employee"]
+    })
     .then((answers) => {
 
-      if (answers.role == "Intern") {
+      if (answers.role == "Engineer") {
+        console.log("yes Engineer");
         addteamEngineer()
 
       } else if (answers.role == "Intern") {
+        console.log("yes intern");
         addteamIntern()
-
       } else {
-
+        writeindex();
       }
 
     })
@@ -88,15 +89,17 @@ const addteamEngineer = () => {
         },
         {
           type: "input",
-          name: "username",
+          name: "github",
           message: "what is Engineer’s github username",
         }
       ])
 
     .then((answers) => {
 
-      const engineer = new Engineer(answers.name, answers.id, answers.email, answers.number, answers.username);
+      const engineer = new Engineer(answers.name, answers.id, answers.email,answers.github);
+      console.log(engineer);
       myteam.push(engineer);
+      addteamemployee();
     })
 }
 
@@ -127,28 +130,41 @@ const addteamIntern = () => {
         }
       ])
     .then((answers) => {
-      const intern = new Intern(answers.name, answers.id, answers.email, answers.number, answers.username);
+      const intern = new Intern(answers.name, answers.id, answers.email,answers.school);
       myteam.push(intern);
+      addteamemployee();
     })
 }
-const writeindex = () => {
-
-  console.log("Your team profile has been successfully created! Please check out the index.html")
 
 
-  // fs.writeFile('./dist/index.html', data, err => {
-  //   // if there is an error 
-  //   if (err) {
-  //     console.log(err);
-  //     return;
-  //     // when the profile has been created 
-  //   } else {
-  //     console.log("Your team profile has been successfully created! Please check out the index.html")
-  //   }
-  // })
+
+
+const writeindex = (answers) => {
+
+  console.log(myteam)
+  fs.writeFile('./dist/index.html', htmlgenerator(myteam), err => {
+
+    // if there is an error 
+    if (err) {
+      console.log(err);
+      return;
+      // when the profile has been created 
+    } else {
+
+      console.log("Your team profile has been successfully created! Please check out the index.html")
+    }
+  })
 };
+
 addteammanger()
-  // .then(addteamemployee)
+
+
+
+
+
+
+
+// .then(addteamemployee)
 
 // .then(myteam => {
 //   return htmlgenerator(myteam);
@@ -156,3 +172,5 @@ addteammanger()
 // .then(pageHTML => {
 //   return writeindex(pageHTML);
 // });
+
+

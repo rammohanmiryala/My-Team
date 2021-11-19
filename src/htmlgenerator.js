@@ -31,7 +31,7 @@ const generateengineer = function (engineer) {
                                 <p class="subtitle">Engineer</p>
                                 <li class="list-group-item section1">ID : ${engineer.id}</li>
                                 <li class="list-group-item section2">>Emai : ${engineer.email}</li>
-                                <li class="list-group-item section3">Gitub : ${engineer.username}</li>
+                                <li class="list-group-item section3">Gitub : ${engineer.github}</li>
                             </ul>
                         </div>
                     </div>
@@ -62,29 +62,28 @@ const generateintern = function (Intern) {
     `;
 }
 
-htmlgenerator = (data) => {
+htmlgenerator = (myteam) => {
+    teampageArray = [];
 
-    for (let i = 0; i < data.length; i++) {
-        const employee = data[i];
+    for (let i = 0; i < myteam.length; i++) {
+        const employee = myteam[i];
         const role = employee.getRole();
-
-        teampageArray = [];
-
         
-
         if (role == "Manager") {
-
+            console.log("i am manager");
             const mangerCard = generateManager();
             pageArray.push(mangerCard);
 
         }
-        if (role == "Manager") {
+        if (role == "engineer") {
+            console.log("i am engineer");
 
             const engineerCard = generateengineer();
             pageArray.push(engineerCard);
 
         }
-        if (role == "Manager") {
+        if (role == "Intern") {
+            console.log("i am Intern");
 
             const internCard = generateintern();
             pageArray.push(internCard);
@@ -97,6 +96,7 @@ htmlgenerator = (data) => {
     const employeeCards = teampageArray.join('')
     const generateTeam = generatepage(employeeCards);
     return generateTeam;
+
 }
 
 
