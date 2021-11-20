@@ -12,9 +12,9 @@ const myteam = [];
 
 // TODO: Create an array of questions for user input
 const addteammanger = () => {
-  return inquirer.prompt(
+  console.log("please bulid your team")
+  return inquirer.prompt(   
       [{
-
           type: "input",
           name: "name",
           message: "who is the  team manager’s name?",
@@ -38,7 +38,7 @@ const addteammanger = () => {
         }
       ])
     .then((answers) => {
-      const manager = new Manager(answers.name, answers.id, answers.email, answers.number, answers.role);
+      const manager = new Manager(answers.name, answers.id, answers.email, answers.number);
       console.log(manager);
       myteam.push(manager);
       addteamemployee()
@@ -158,20 +158,4 @@ const writeindex = () => {
 };
 
 addteammanger()
-
-
-
-
-
-
-
-// .then(addteamemployee)
-
-// .then(myteam => {
-//   return htmlgenerator(myteam);
-// })
-// .then(pageHTML => {
-//   return writeindex(pageHTML);
-// });
-
 

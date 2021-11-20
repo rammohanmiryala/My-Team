@@ -1,28 +1,44 @@
-const generateManager = function (Manager) {
+const generateManager = function (manager) {
     return `
-    <div class="container">
-            <div class="row mainouter">
                 <div class="col-md-3 outer">
                     <div class="row">
                         <div class="card maincard">
                             <ul class="list-group list-group-flush cardbox">
-                                <p class="header">${Manager.name}</p>
+                                <p class="header">${manager.name}</p>
                                 <p class="subtitle">Manager</p>
-                                <li class="list-group-item section1">ID : ${Manager.id}</li>
-                                <li class="list-group-item section2">Emai : ${Manager.email}</li>
-                                <li class="list-group-item section3"> Office Numbee : ${Manager.number}</li>
+                                <li class="list-group-item section1">ID : ${manager.id}</li>
+                                <li class="list-group-item section2">Email :<a href = "mailto:${manager.email}">${manager.email}</a></li>
+                                <li class="list-group-item section3"> Office Number : ${manager.number}</li>
                             </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div>     
     `;
 }
+
+
+const generateintern = function (Intern) {
+    return `
+                <div class="col-md-3 outer">
+                    <div class="row">
+                        <div class="card maincard">
+                            <ul class="list-group list-group-flush cardbox">
+                                <p class="header">${Intern.name}</p>
+                                <p class="subtitle">Intern
+                                </p>
+                                <li class="list-group-item section1">ID : ${Intern.id}</li>
+                                <li class="list-group-item section2">Email :<a href = "mailto:${Intern.email}">${Intern.email}</a></li>
+                                <li class="list-group-item section3">School : ${Intern.school}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>     
+    `;
+}
+
 const generateengineer = function (engineer) {
     return `
-    <div class="container">
-            <div class="row mainouter">
+    
                 <div class="col-md-3 outer">
                     <div class="row">
                         <div class="card maincard">
@@ -30,37 +46,16 @@ const generateengineer = function (engineer) {
                                 <p class="header">${engineer.name}</p>
                                 <p class="subtitle">Engineer</p>
                                 <li class="list-group-item section1">ID : ${engineer.id}</li>
-                                <li class="list-group-item section2">>Emai : ${engineer.email}</li>
-                                <li class="list-group-item section3">Gitub : ${engineer.github}</li>
+                                <li class="list-group-item section2">Email : ${engineer.email}</li>
+                                <li class="list-group-item section3">Github : <a href = "https://github.com/${engineer.github}">${engineer.github}</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+        
     `;
 }
-const generateintern = function (Intern) {
-    return `
-    <div class="container">
-            <div class="row mainouter">
-                <div class="col-md-3 outer">
-                    <div class="row">
-                        <div class="card maincard">
-                            <ul class="list-group list-group-flush cardbox">
-                                <p class="header">${Intern.name}</p>
-                                <p class="subtitle">Intern</p>
-                                <li class="list-group-item section1">ID : ${Intern.id}</li>
-                                <li class="list-group-item section2">Emai : ${Intern.email}</li>
-                                <li class="list-group-item section3">School : ${Intern.school}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
+
 
 const generatepage = function (employeeCards) {
     return `
@@ -87,7 +82,11 @@ const generatepage = function (employeeCards) {
             </div>
         </nav>
         <main>
-        ${employeeCards}
+        <div class="container">
+            <div class="row mainouter">
+            ${employeeCards}
+            </div>
+        </div>  
         </main>
     `;
 }
@@ -97,29 +96,30 @@ htmlgenerator = (myteam) => {
 
     for (let i = 0; i < myteam.length; i++) {
         console.log(myteam[i])
-        console.log(myteam[i])
 
         const employee = myteam[i];
         const role = employee.getRole();
-        
+        console.log(role)
+
+
         if (role == "Manager") {
             console.log("i am manager");
-            const mangerCard = generateManager();
-            pageArray.push(mangerCard);
+            const mangerCard = generateManager(employee);
+            teampageArray.push(mangerCard);
 
         }
         if (role == "Engineer") {
             console.log("i am engineer");
 
-            const engineerCard = generateengineer();
-            pageArray.push(engineerCard);
+            const engineerCard = generateengineer(employee);
+            teampageArray.push(engineerCard);
 
         }
         if (role == "Intern") {
             console.log("i am Intern");
 
-            const internCard = generateintern();
-            pageArray.push(internCard);
+            const internCard = generateintern(employee);
+            teampageArray.push(internCard);
 
         }
 
