@@ -10,7 +10,7 @@ const htmlgenerator = require('../My-Team/src/htmlgenerator');
 const myteam = [];
 
 
-// TODO: Create an array of questions for user input
+// Create an array of questions for user input for manager
 const addteammanger = () => {
   console.log("please bulid your team")
   return inquirer.prompt(   
@@ -39,13 +39,14 @@ const addteammanger = () => {
       ])
     .then((answers) => {
       const manager = new Manager(answers.name, answers.id, answers.email, answers.number);
-      console.log(manager);
+      
       myteam.push(manager);
       addteamemployee()
 
     })
 
 }
+// Create an array of questions for user input for employee
 const addteamemployee = () => {
   return inquirer.prompt({
       type: "list",
@@ -68,6 +69,7 @@ const addteamemployee = () => {
 
     })
 }
+// Create an array of questions for user input for Engineer’s
 const addteamEngineer = () => {
   return inquirer.prompt(
       [{
@@ -102,7 +104,7 @@ const addteamEngineer = () => {
       addteamemployee();
     })
 }
-
+// Create an array of questions for user input for Intern
 const addteamIntern = () => {
   return inquirer.prompt(
       [{
@@ -139,7 +141,7 @@ const addteamIntern = () => {
 
 
 
-
+//  funtion to crate html file
 const writeindex = () => {
 
   console.log(myteam)

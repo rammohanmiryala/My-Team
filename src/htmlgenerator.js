@@ -1,3 +1,5 @@
+
+//  funtion to create Manager div
 const generateManager = function (manager) {
     return `
                 <div class="col-md-3 outer">
@@ -16,7 +18,7 @@ const generateManager = function (manager) {
     `;
 }
 
-
+//  funtion to create intern div
 const generateintern = function (Intern) {
     return `
                 <div class="col-md-3 outer">
@@ -35,7 +37,7 @@ const generateintern = function (Intern) {
                 </div>     
     `;
 }
-
+//  funtion to create engineer div
 const generateengineer = function (engineer) {
     return `
     
@@ -56,7 +58,7 @@ const generateengineer = function (engineer) {
     `;
 }
 
-
+//  funtion to create htmlpage
 const generatepage = function (employeeCards) {
     return `
     <!doctype html>
@@ -84,13 +86,14 @@ const generatepage = function (employeeCards) {
         <main>
         <div class="container">
             <div class="row mainouter">
-            ${employeeCards}
+           
+            ${employeeCards} 
             </div>
         </div>  
         </main>
     `;
 }
-
+// funtion to genrate the page with user selection  base don role 
 htmlgenerator = (myteam) => {
     teampageArray = [];
 
